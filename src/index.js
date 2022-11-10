@@ -6,7 +6,7 @@ function onPageLoad() {
         data.forEach((element) => {
             const ramenMenu = document.querySelector("#ramen-menu")
             const ramenImgs = document.createElement("img")
-
+            
             ramenImgs.src = element.image
             
             ramenMenu.appendChild(ramenImgs)
@@ -32,4 +32,30 @@ function ramenDetails(element, ramenImgs) {
     })
 }
 
+function newRamen() {
+    const form = document.querySelector("#new-ramen")
+    const ramenMenu = document.querySelector("#ramen-menu")
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const newImg = document.createElement('img')
+
+        const formData = {
+            name: e.target.name.value,
+            restaurant: e.target.restaurant.value,
+            image: e.target.image.value,
+            rating: e.target.rating.value,
+            comment: e.target["new-comment"].value
+        }
+        
+        newImg.src = formData.image
+        ramenMenu.appendChild(newImg)
+        ramenDetails(formData, newImg)
+    })
+}
+
 onPageLoad()
+newRamen()
+
+
+
